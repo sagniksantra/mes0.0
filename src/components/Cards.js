@@ -33,13 +33,13 @@ function Cards() {
               src='stock.png'
               text='Event 456'
               label='Consulting'
-              path='/products'
+              path='/register'
             />
             <CardItem
               src='stock.png'
               text='Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
               label='Genre/topic'
-              path='/sign-up'
+              path='/register'
             />
           </ul>
         </div>
