@@ -1,44 +1,9 @@
 import React, { useState } from 'react';
 import '../../App.css';
-import './SignUp.css';
+import './Login.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Send the email and password to the server for authentication
-  }
-
-  return (
-    <div className="signup">
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <br />
-      <button type="submit">Log in</button>
-    </form>
-    </div>
-  );
-}
-
-function SignUp() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +15,7 @@ function SignUp() {
   }
 
   return (
-    <div className="signup">
+    <div className="log-in">
     <form onSubmit={handleSubmit}>
       <label>
         Name:
@@ -97,4 +62,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;
