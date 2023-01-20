@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import './Register.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {auth} from "../../firebase/config";
+import { Link, useHistory } from 'react-router-dom';
 
 const events = [
   { id: 1, name: 'Event 1' },
@@ -10,7 +15,13 @@ const events = [
 
 function Register() {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cPassword, setCPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedEvents, setSelectedEvents] = useState([]);
+
+  let Navigate = useHistory();
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
@@ -23,11 +34,30 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Send the username and selected events to the server for registration
-    console.log(username, selectedEvents);
+    if (password !== cPassword) {
+      toast.error("Passwords do not match");
+    }
+    setIsLoading(true)
+
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user)
+    setIsLoading(false)
+    toast.success("Registration Successful...")
+    Navigate("/login");
+  })
+  .catch((error) => {
+    toast.error(error.message)
+    setIsLoading(false);
+  });
   };
 
   return (
+    <>
+    <ToastContainer />
+    {isLoading && <loader/>}
     <div className="register">
     <form onSubmit={handleSubmit}>
       <label>
@@ -36,6 +66,36 @@ function Register() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          type="text"
+          placeholder="Email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+      <label>
+        Password:
+        <input
+          type="password"
+          placeholder="Password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+      <label>
+        Confirm Password:
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          required
+          value={cPassword}
+          onChange={(e) => setCPassword(e.target.value)}
         />
       </label>
       <br />
@@ -54,6 +114,7 @@ function Register() {
       <button type="submit">Register</button>
     </form>
     </div>
+    </>
   );
 }
 

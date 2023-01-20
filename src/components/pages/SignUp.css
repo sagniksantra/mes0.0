@@ -1,30 +1,31 @@
 .signup {
-    width: 70%;
-    margin-top: 50px;
-    margin-left: 300px;
-    margin-right: 300px;
-    align-items: center;
-    padding: 2rem;
-    border: 1px solid #f7f7f7;
-    border-radius: 10px;
-    background-color: #f7f7f7;
+  width: 70%;
+  margin-top: 50px;
+  margin-left: 15%;
+  margin-right: 15%;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid #f7f7f7;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Use media queries to adjust the layout of the form on different screen sizes */
+@media (max-width: 600px) {
+  form {
+    width: 90%;
   }
-  
-  label {
-    display: block; /* Make the label and input take up the full width of the parent container */
-    margin-bottom: 0.5rem;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  /* Use media queries to adjust the layout of the form on different screen sizes */
-  @media (max-width: 600px) {
-    form {
-      width: 90%;
-    }
-  }
-  
+}

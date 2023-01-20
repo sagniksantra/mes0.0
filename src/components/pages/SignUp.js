@@ -38,7 +38,7 @@ function Login() {
   );
 }
 
-function Register() {
+function SignUp() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,6 +50,7 @@ function Register() {
   }
 
   return (
+    <div className="signup">
     <form onSubmit={handleSubmit}>
       <label>
         Name:
@@ -89,8 +90,11 @@ function Register() {
       </label>
       <br />
       <button type="submit">Sign up</button>
+      <button type="submit">Login with GOOGLE</button>
+      <button type="submit">register</button>
     </form>
+    </div>
   );
 }
 
-export default Register;
+export default SignUp;
