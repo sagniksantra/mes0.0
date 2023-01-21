@@ -21,7 +21,7 @@ function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedEvents, setSelectedEvents] = useState([]);
 
-  let Navigate = useHistory();
+  let navigate = useHistory();
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
@@ -46,7 +46,7 @@ function Register() {
     console.log(user)
     setIsLoading(false)
     toast.success("Registration Successful...")
-    Navigate("/login");
+    navigate.push("/login");
   })
   .catch((error) => {
     toast.error(error.message)

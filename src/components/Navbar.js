@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Navbar.css';
+import { auth } from "../firebase/config";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -9,6 +12,21 @@ function Navbar() {
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+
+    const navigate = useHistory();
+
+    const logoutUser = () => {
+        signOut(auth)
+          .then(() => {
+            // Sign-out successful.
+            toast.success("Logout successfully.");
+            navigate.push("/");
+          })
+          .catch((error) => {
+            // An error happened.
+            toast.error(error.message);
+          });
+    }
 
     const showButton = () => {
         if (window.innerWidth <= 960) {
@@ -56,6 +74,15 @@ function Navbar() {
                         onClick={closeMobileMenu}
                     >
                         Register
+                    </Link>
+                    </li>
+                    <li>
+                    <Link
+                        to='/'
+                        className='nav-links'
+                        onClick={logoutUser}
+                    >
+                        Logout
                     </Link>
                     </li>
                     <li>

@@ -6,11 +6,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Register from './components/pages/Register';
 import Events from './components/pages/Events';
 import Login from './components/pages/Login';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <>
       <Router>
+        <ToastContainer />
         <Navbar />
         <Switch>
           <Route path='/' exact component={Home} />
